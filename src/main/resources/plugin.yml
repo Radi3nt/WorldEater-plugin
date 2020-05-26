@@ -8,4 +8,4 @@ description: A plugin that slowly eat the world ...
 commands:
   worldeater:
     description: MainCommand of the plugin
-    aliases: [we, worlde, weater]
+    aliases: [we, worlde, weater, eater]

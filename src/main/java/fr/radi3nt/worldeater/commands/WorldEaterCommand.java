@@ -48,8 +48,8 @@ public class WorldEaterCommand implements CommandExecutor {
         String Deactivate = ChatColor.translateAlternateColorCodes('&',plugin.getConfig().getString("message-deactivate"));
         String Center = ChatColor.translateAlternateColorCodes('&',plugin.getConfig().getString("message-center"));
         String Error = ChatColor.translateAlternateColorCodes('&',plugin.getConfig().getString("message-error"));
-        String ErrorArgs = ChatColor.translateAlternateColorCodes('&',plugin.getConfig().getString("message-args"));
-        String ErrorPerm = ChatColor.translateAlternateColorCodes('&',plugin.getConfig().getString("message-perm"));
+        String ErrorArgs = ChatColor.translateAlternateColorCodes('&',plugin.getConfig().getString("message-noargs"));
+        String ErrorPerm = ChatColor.translateAlternateColorCodes('&',plugin.getConfig().getString("message-noperm"));
 
 
 
@@ -130,6 +130,7 @@ public class WorldEaterCommand implements CommandExecutor {
                     } else {
                         sender.sendMessage(Prefix + " " + ErrorArgs);
                     }
+                    break;
 
 
                 case "param":
