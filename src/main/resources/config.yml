@@ -1,0 +1,35 @@
+prefix: "&6&lWorldEater >"
+
+destruct-way: "downToUp"
+started: false
+radius: 100
+speed: 60
+world-name: "world"
+
+block-level: 0
+
+worldborder: true
+
+message-start: "You started the world eater ... :0"
+message-stop: "You stopped the world eater"
+message-pause: "You paused the world eater"
+message-percentage: "&c&l%percentage%%&r of the world eaten"
+message-level: "The eater is at level &c&l%level%Y"
+message-blocks: "The eater ate &c&l%blocks% blocks"
+message-time: ""
+message-radius: "Set the radius to &b&l%radius%"
+message-speed: "Set the speed to &b&l%speed%"
+message-world: "Set the world to &b&l%world%"
+message-activate: "You &2&lactivated&r the world border"
+message-deactivate: "You &4&ldeactivated&r the world border"
+message-center: "You set the world border center to your position"
+message-error: "&cError, something is wrong"
+message-noargs: "&cArguments required"
+message-noperm: "&cNo permission"
+
+
+
+
+#Don't touch
+spawn-center: false
+version: 1.0

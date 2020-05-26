@@ -1,0 +1,11 @@
+name: WorldEater
+version: ${project.version}
+main: fr.radi3nt.worldeater.MainWorldEater
+api-version: 1.13
+prefix: WorldEater
+authors: [Radi3nt]
+description: A plugin that slowly eat the world ...
+commands:
+  worldeater:
+    description: MainCommand of the plugin
+    aliases: [we, worlde, weater]
