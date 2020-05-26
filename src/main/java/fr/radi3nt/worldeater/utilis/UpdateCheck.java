@@ -31,7 +31,7 @@ public class UpdateCheck {
         console.sendMessage(Prefix + " Checking for plugin updates...");
         InputStream in = null;
         try {
-            in = new URL("https://raw.githubusercontent.com/Radi3nt/Fly-plugin/master/version.txt").openStream();
+            in = new URL("https://raw.githubusercontent.com/Radi3nt/WorldEater-plugin/master/version.txt").openStream();
         } catch (MalformedURLException e) {
             console.sendMessage(Prefix + " Unable to check for updates!");
             e.printStackTrace();
