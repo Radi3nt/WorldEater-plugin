@@ -79,11 +79,8 @@ public class Eater extends BukkitRunnable {
 
     public static double getPercentageOfWorldEaten() {
         Plugin plugin = MainWorldEater.getPlugin(MainWorldEater.class);
-        Boolean Started = plugin.getConfig().getBoolean("started");
         Integer EaterRadius = plugin.getConfig().getInt("radius");
-        Boolean IsWorldBorder = plugin.getConfig().getBoolean("worldborder");
         String WorldName = plugin.getConfig().getString("world-name");
-        Integer Speed = plugin.getConfig().getInt("speed");
 
         World world = Bukkit.getWorld(WorldName);
         double percentage = Double.parseDouble(String.valueOf(BlockEaten))/(Double.parseDouble(String.valueOf(EaterRadius)) *Double.parseDouble(String.valueOf(EaterRadius))*world.getMaxHeight())*100;
@@ -106,7 +103,12 @@ public class Eater extends BukkitRunnable {
     }
 
     public static int getEstmatedTime() {
-        int time = 0;
+        Plugin plugin = MainWorldEater.getPlugin(MainWorldEater.class);
+        String WorldName = plugin.getConfig().getString("world-name");
+        Integer Speed = plugin.getConfig().getInt("speed");
+
+        int maxLevel = plugin.getServer().getWorld(WorldName).getMaxHeight();
+        int time = getYLevel() - (Speed * maxLevel)/4;
         return time;
     }
 }

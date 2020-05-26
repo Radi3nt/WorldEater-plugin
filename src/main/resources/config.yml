@@ -16,7 +16,7 @@ message-pause: "You paused the world eater"
 message-percentage: "&c&l%percentage%%&r of the world eaten"
 message-level: "The eater is at level &c&l%level%Y"
 message-blocks: "The eater ate &c&l%blocks% blocks"
-message-time: ""
+message-time: "&c&l&%time%&r of time left"
 message-radius: "Set the radius to &b&l%radius%"
 message-speed: "Set the speed to &b&l%speed%"
 message-world: "Set the world to &b&l%world%"
@@ -28,6 +28,8 @@ message-noargs: "&cArguments required"
 message-noperm: "&cNo permission"
 
 
+spectator-on-death: false
+spectator-message: "&2You were set in spectator gamemode"
 
 
 #Don't touch

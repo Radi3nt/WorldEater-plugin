@@ -26,9 +26,7 @@ public class WorldEaterCommand implements CommandExecutor {
         String Prefix = ChatColor.translateAlternateColorCodes('&', plugin.getConfig().getString("prefix")) + ChatColor.RESET;
 
 
-        Boolean Started = plugin.getConfig().getBoolean("started");
         Integer EaterRadius = plugin.getConfig().getInt("radius");
-        Boolean IsWorldBorder = plugin.getConfig().getBoolean("worldborder");
         String WorldName = plugin.getConfig().getString("world-name");
         Integer Speed = plugin.getConfig().getInt("speed");
 
@@ -41,6 +39,7 @@ public class WorldEaterCommand implements CommandExecutor {
         String Percentage = ChatColor.translateAlternateColorCodes('&',plugin.getConfig().getString("message-percentage")).replace("%percentage%", String.valueOf(getPercentageOfWorldEaten()));
         String Level = ChatColor.translateAlternateColorCodes('&',plugin.getConfig().getString("message-level")).replace("%level%", String.valueOf(getYLevel()));
         String Blocks = ChatColor.translateAlternateColorCodes('&',plugin.getConfig().getString("message-blocks")).replace("%blocks%", String.valueOf(getNumberOfBlocksEaten()));
+        String Time = ChatColor.translateAlternateColorCodes('&',plugin.getConfig().getString("message-time")).replace("%time%", String.valueOf(getEstmatedTime()));
         String SpeedM = ChatColor.translateAlternateColorCodes('&',plugin.getConfig().getString("message-speed")).replace("%speed%", String.valueOf(Speed));
         String Radius = ChatColor.translateAlternateColorCodes('&',plugin.getConfig().getString("message-radius")).replace("%radius%", String.valueOf(EaterRadius));
         String World = ChatColor.translateAlternateColorCodes('&',plugin.getConfig().getString("message-world")).replace("%world%", String.valueOf(WorldName));
@@ -116,8 +115,7 @@ public class WorldEaterCommand implements CommandExecutor {
 
                             case "time":
                                 if (sender.hasPermission("we.check.time")) {
-
-
+                                    sender.sendMessage(Prefix + " " + Time);
                                 } else {
                                     sender.sendMessage(Prefix + " " + ErrorPerm);
                                 }
