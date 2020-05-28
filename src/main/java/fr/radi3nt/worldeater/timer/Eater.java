@@ -10,8 +10,8 @@ import java.text.DecimalFormat;
 public class Eater extends BukkitRunnable {
 
     public static int BlockEaten = 0;
-    private int interval = 0;
-    private static int y= 0;
+    public static int interval = 0;
+    public static int y= 0;
     Plugin plugin = MainWorldEater.getPlugin(MainWorldEater.class);
 
 
@@ -57,7 +57,7 @@ public class Eater extends BukkitRunnable {
                     y = plugin.getConfig().getInt("block-level");
                     plugin.getConfig().set("block-level", 0);
                 }
-                if (interval>=Speed) {
+                if (interval>=Speed*4*4) {
                     //Destruct
                     int ox = border.getCenter().getBlockX() - EaterRadius/2;
                     int oz = border.getCenter().getBlockZ() - EaterRadius/2;
@@ -85,7 +85,7 @@ public class Eater extends BukkitRunnable {
         World world = Bukkit.getWorld(WorldName);
         double percentage = Double.parseDouble(String.valueOf(BlockEaten))/(Double.parseDouble(String.valueOf(EaterRadius)) *Double.parseDouble(String.valueOf(EaterRadius))*world.getMaxHeight())*100;
         String percentageS;
-        percentageS = new DecimalFormat("###.##").format(percentage);
+        percentageS = new DecimalFormat("###.###").format(percentage);
         percentage = Double.parseDouble(percentageS);
         if (percentage > 100) {
             percentage = 100;
@@ -102,13 +102,13 @@ public class Eater extends BukkitRunnable {
         return y;
     }
 
-    public static int getEstmatedTime() {
+    public static int getEstimatedTime() {
         Plugin plugin = MainWorldEater.getPlugin(MainWorldEater.class);
         String WorldName = plugin.getConfig().getString("world-name");
         Integer Speed = plugin.getConfig().getInt("speed");
 
         int maxLevel = plugin.getServer().getWorld(WorldName).getMaxHeight();
-        int time = getYLevel() - (Speed * maxLevel)/4;
+        int time = (maxLevel - getYLevel())*Speed - interval/4/4;
         return time;
     }
 }

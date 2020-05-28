@@ -7,19 +7,20 @@ import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
 import org.bukkit.event.entity.PlayerDeathEvent;
+import org.bukkit.event.player.PlayerRespawnEvent;
 import org.bukkit.plugin.Plugin;
 
-public class OnDeathEvent implements Listener {
+public class OnPlayerRespawnEvent implements Listener {
 
     Plugin plugin = MainWorldEater.getPlugin(MainWorldEater.class);
 
 
     @EventHandler
-    public void OnDeathEvent(PlayerDeathEvent e) {
+    public void OnRespawnEvent(PlayerRespawnEvent e) {
 
         Boolean SpectatorOnDeath = plugin.getConfig().getBoolean("spectator-on-death");
         String SpectatorMessage = ChatColor.translateAlternateColorCodes('&', plugin.getConfig().getString("spectator-message"));
-        Player player = e.getEntity();
+        Player player = e.getPlayer();
 
 
         if (SpectatorOnDeath) {

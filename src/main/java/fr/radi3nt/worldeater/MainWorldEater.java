@@ -1,6 +1,7 @@
 package fr.radi3nt.worldeater;
 
 import fr.radi3nt.worldeater.commands.WorldEaterCommand;
+import fr.radi3nt.worldeater.events.OnPlayerRespawnEvent;
 import fr.radi3nt.worldeater.tabCompleter.WorldEaterTab;
 import fr.radi3nt.worldeater.timer.Eater;
 import fr.radi3nt.worldeater.utilis.UpdateCheck;
@@ -48,7 +49,9 @@ public final class MainWorldEater extends JavaPlugin {
     }
 
 
-    public void RegisterEvents() {}
+    public void RegisterEvents() {
+        getServer().getPluginManager().registerEvents(new OnPlayerRespawnEvent(), this);
+    }
 
     public void RegisterCommands() {
         getCommand("worldeater").setExecutor(new WorldEaterCommand());
@@ -60,7 +63,7 @@ public final class MainWorldEater extends JavaPlugin {
         updater.run();
 
         Eater eater = new Eater();
-        eater.runTaskTimer(this, 4, 1);
+        eater.runTaskTimer(this, 1L, 1L);
     }
 
     public void RegisterConfig() {

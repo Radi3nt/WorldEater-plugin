@@ -39,10 +39,10 @@ public class WorldEaterCommand implements CommandExecutor {
         String Percentage = ChatColor.translateAlternateColorCodes('&',plugin.getConfig().getString("message-percentage")).replace("%percentage%", String.valueOf(getPercentageOfWorldEaten()));
         String Level = ChatColor.translateAlternateColorCodes('&',plugin.getConfig().getString("message-level")).replace("%level%", String.valueOf(getYLevel()));
         String Blocks = ChatColor.translateAlternateColorCodes('&',plugin.getConfig().getString("message-blocks")).replace("%blocks%", String.valueOf(getNumberOfBlocksEaten()));
-        String Time = ChatColor.translateAlternateColorCodes('&',plugin.getConfig().getString("message-time")).replace("%time%", String.valueOf(getEstmatedTime()));
-        String SpeedM = ChatColor.translateAlternateColorCodes('&',plugin.getConfig().getString("message-speed")).replace("%speed%", String.valueOf(Speed));
-        String Radius = ChatColor.translateAlternateColorCodes('&',plugin.getConfig().getString("message-radius")).replace("%radius%", String.valueOf(EaterRadius));
-        String World = ChatColor.translateAlternateColorCodes('&',plugin.getConfig().getString("message-world")).replace("%world%", String.valueOf(WorldName));
+        String Time = ChatColor.translateAlternateColorCodes('&',plugin.getConfig().getString("message-time")).replace("%time%", String.valueOf(getEstimatedTime()));
+        String SpeedM = ChatColor.translateAlternateColorCodes('&',plugin.getConfig().getString("message-speed"));
+        String Radius = ChatColor.translateAlternateColorCodes('&',plugin.getConfig().getString("message-radius"));
+        String World = ChatColor.translateAlternateColorCodes('&',plugin.getConfig().getString("message-world"));
         String Activate = ChatColor.translateAlternateColorCodes('&',plugin.getConfig().getString("message-activate"));
         String Deactivate = ChatColor.translateAlternateColorCodes('&',plugin.getConfig().getString("message-deactivate"));
         String Center = ChatColor.translateAlternateColorCodes('&',plugin.getConfig().getString("message-center"));
@@ -79,6 +79,7 @@ public class WorldEaterCommand implements CommandExecutor {
                         plugin.getConfig().set("started", false);
                         plugin.getConfig().set("block-level", 0);
                         BlockEaten = 0;
+                        y = 0;
                         sender.sendMessage(Prefix+ " " + Stop);
                     } else {
                         sender.sendMessage(Prefix + " " + ErrorPerm);
@@ -115,7 +116,11 @@ public class WorldEaterCommand implements CommandExecutor {
 
                             case "time":
                                 if (sender.hasPermission("we.check.time")) {
-                                    sender.sendMessage(Prefix + " " + Time);
+                                    int heures = (getEstimatedTime() / 3600);
+                                    int minutes = ((getEstimatedTime() - (getEstimatedTime() / 3600) * 3600) / 60);
+                                    int seconds = getEstimatedTime() - (heures * 3600 + minutes * 60);
+                                    String TimeM = ChatColor.translateAlternateColorCodes('&',plugin.getConfig().getString("message-time")).replace("%hours%", String.valueOf(heures)).replace("%minutes%", String.valueOf(minutes)).replace("%seconds%", String.valueOf(seconds));
+                                    sender.sendMessage(Prefix + " " + TimeM);
                                 } else {
                                     sender.sendMessage(Prefix + " " + ErrorPerm);
                                 }
@@ -152,7 +157,8 @@ public class WorldEaterCommand implements CommandExecutor {
                                 } else {
                                     plugin.getConfig().set("radius", Integer.parseInt(sb.toString()));
                                     plugin.saveConfig();
-                                    sender.sendMessage(Prefix+ " " + Radius);
+                                    EaterRadius = plugin.getConfig().getInt("radius");
+                                    sender.sendMessage(Prefix+ " " + Radius.replace("%radius%", String.valueOf(EaterRadius)));
                                 }
                                 } else {
                                     sender.sendMessage(Prefix + " " + ErrorPerm);
@@ -177,7 +183,8 @@ public class WorldEaterCommand implements CommandExecutor {
                                     } else {
                                         plugin.getConfig().set("speed", Integer.valueOf(sb1.toString()));
                                         plugin.saveConfig();
-                                        sender.sendMessage(Prefix+ " " + SpeedM);
+                                        Speed = plugin.getConfig().getInt("speed");
+                                        sender.sendMessage(Prefix+ " " + SpeedM.replace("%speed%", String.valueOf(Speed)));
                                     }
                                 }
                                 } else {
@@ -191,7 +198,8 @@ public class WorldEaterCommand implements CommandExecutor {
                                 if (args.length >= 3) {
                                     plugin.getConfig().set("world-name", args[2]);
                                     plugin.saveConfig();
-                                    sender.sendMessage(Prefix+ " " + World);
+                                    WorldName = plugin.getConfig().getString("world-name");
+                                    sender.sendMessage(Prefix+ " " + World.replace("%world%", String.valueOf(WorldName)));
                                 } else {
                                     //error
                                 }
